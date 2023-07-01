@@ -2164,6 +2164,12 @@ void fstBuilder::stoprun(daqReader *rdr)
           }
 	}
         hEventSumContents.hMaxTBfractionVsAPV_ZS->SetBinContent(glbElecApvIdx+1, fraction);
+
+        hMeanVsApvIdx->SetBinContent(glbElecApvIdx+1,hMaxTimeBinContents_APV.maxTimeBinArray_APV[glbElecApvIdx]->GetMean());
+        hMeanVsApvIdx->SetBinError(glbElecApvIdx+1,hMaxTimeBinContents_APV.maxTimeBinArray_APV[glbElecApvIdx]->GetMeanError());
+
+        hNVsApvIdx->SetBinContent(glbElecApvIdx+1, entriesTB_all);
+        hNVsApvIdx->SetBinError(glbElecApvIdx+1, TMath::Sqrt(entriesTB_all));
       }
     }
   }
