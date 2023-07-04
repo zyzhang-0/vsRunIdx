@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<job fileListSyntax="paths" minFilesPerProcess="1" maxFilesPerProcess="1" simulateSubmission="false">
+  <command>
+
+		starver SL23b
+		OnlTools/Jevp/launch fstBuilder -file /evp/a/&run; <!---pdf &run;.pdf-->
+		mv test.root &run;.root
+  </command>
+  
+  <stdout URL="file:&PWD;/output/log/pid_$JOBID.log"/>
+  <stderr URL="file:&PWD;/output/err/pid_$JOBID.err"/>
+
+         <SandBox installer = "ZIP">
+                 <Package name = "&ped;">
+	                 <File>file:./.sl74_gcc485</File>
+	                 <File>file:./fst/fst_s1_pedestals.txt</File>
+	                 <File>file:./fst/fst_s2_pedestals.txt</File>
+			 <File>file:./OnlTools/Jevp/archiveHistoDefs.pl</File>
+			 <File>file:./OnlTools/Jevp/Conscript.batty</File>
+			 <File>file:./OnlTools/Jevp/jevpServer</File>
+			 <File>file:./OnlTools/Jevp/jevpStatus</File>
+			 <File>file:./OnlTools/Jevp/jevpViewer</File>
+			 <File>file:./OnlTools/Jevp/launch</File>
+			 <File>file:./OnlTools/Jevp/level.source</File>
+			 <File>file:./OnlTools/Jevp/Makefile</File>
+			 <File>file:./OnlTools/Jevp/qtTest</File>
+			 <File>file:./OnlTools/Jevp/readme-presenter.txt</File>
+			 <File>file:./OnlTools/Jevp/readme-server.txt</File>
+			 <File>file:./OnlTools/Jevp/readme.txt</File>
+			 <File>file:./OnlTools/Jevp/recoverEvpDb.pl</File>
+                 </Package>
+         </SandBox>
+
+
+
+  <Generator>
+    	<Location>      &PWD;/output/report/</Location>
+    	<ScriptLocation>&PWD;/output/csh/</ScriptLocation>
+    	<ListLocation>  &PWD;/output/list/</ListLocation>
+  </Generator>
+  
+  <input URL="filelist:&PWD;/filelist.list"/>
+  <output fromScratch="*.root" toURL="file:&PWD;/output/ROOT/"/>
+  <!--<output fromScratch="*.pdf"  toURL="file:&PWD;/output/pdf/"/>-->
+</job>
+
+
